@@ -1,0 +1,12 @@
+{
+  "name": "wcposm/pos-manager-pdf-invoice",
+  "description": "POS Manager & PDF Invoice & Packing Slip for WooCommerce (Admin POS).",
+  "type": "wordpress-plugin",
+  "require": {
+    "mpdf/mpdf": "^8.2"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "optimize-autoloader": true
+  }
+}

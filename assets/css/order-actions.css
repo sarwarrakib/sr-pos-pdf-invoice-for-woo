@@ -1,0 +1,28 @@
+/* WooCommerce Orders list: PDF action icons (custom SVG) */
+.wc-action-button-wcposm_invoice_pdf::after,
+.wc-action-button-wcposm_packing_pdf::after{
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.wc-action-button-wcposm_invoice_pdf::after{
+  -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgMmg5bDMgM3YxN2wtMi0xLTIgMS0yLTEtMiAxLTItMS0yIDEtMi0xVjJ6bTkgMS41VjdoMy41TDE1IDMuNXpNOCAxMWg4djEuNUg4VjExem0wIDNoOHYxLjVIOFYxNHptMC02aDV2MS41SDhWOHptLjUgOS41aDd2MmgtN3YtMnoiLz4KPC9zdmc+");
+  mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgMmg5bDMgM3YxN2wtMi0xLTIgMS0yLTEtMiAxLTItMS0yIDEtMi0xVjJ6bTkgMS41VjdoMy41TDE1IDMuNXpNOCAxMWg4djEuNUg4VjExem0wIDNoOHYxLjVIOFYxNHptMC02aDV2MS41SDhWOHptLjUgOS41aDd2MmgtN3YtMnoiLz4KPC9zdmc+");
+}
+
+.wc-action-button-wcposm_packing_pdf::after{
+  -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxIDguNWwtOSA1LTktNSA5LTUgOSA1em0tMTggMi4ybDkgNSA5LTVWMjBhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJ2LTkuM3ptNi41IDIuOGwxLjItMS4yIDEuOCAxLjggMy45LTMuOSAxLjIgMS4yLTUuMSA1LjEtMy0zeiIvPgo8L3N2Zz4=");
+  mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxIDguNWwtOSA1LTktNSA5LTUgOSA1em0tMTggMi4ybDkgNSA5LTVWMjBhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJ2LTkuM3ptNi41IDIuOGwxLjItMS4yIDEuOCAxLjggMy45LTMuOSAxLjIgMS4yLTUuMSA1LjEtMy0zeiIvPgo8L3N2Zz4=");
+}
+
+.wc-action-button-wcposm_invoice_pdf{ color:#b91c1c; }
+.wc-action-button-wcposm_packing_pdf{ color:#0f766e; }

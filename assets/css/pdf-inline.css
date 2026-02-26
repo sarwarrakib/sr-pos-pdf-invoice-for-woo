@@ -1,0 +1,133 @@
+@page { margin: 12mm; }
+
+    /* Browser print font embedding (Save as PDF). mPDF uses fontdata (configured in make_mpdf). */
+    @font-face{
+        font-family:'notosansbengali';
+        src:url('{$bn_font_url_r}') format('truetype');
+        font-weight:400;
+        font-style:normal;
+    }
+    @font-face{
+        font-family:'notosansbengali';
+        src:url('{$bn_font_url_b}') format('truetype');
+        font-weight:700;
+        font-style:normal;
+    }
+    /* Optional custom upload font for browser print */
+    {$custom_font_face_css}
+
+    body{font-family: {$font_stack} !important; font-size:12px; color:#111827;}
+    /* Bengali text helper */
+    .wcposm-bn, .bn{font-family: notosansbengali, dejavusans, sans-serif !important;}
+    .wcposm-bnrun{font-family: notosansbengali !important;}
+    .wrap{font-family: {$font_stack} !important;}
+    /* Kill any global/admin/theme pseudo-icon injections (main source of □□□□ before labels). */
+    .wrap *::before, .wrap *::after{content:none !important; display:none !important; visibility:hidden !important;}
+    .wrap{width:100%; position:relative;}
+    .content{position:relative; z-index:10;}
+
+    /* Watermark (HTML). Same markup used for print and mPDF. */
+    .wm{
+        position:fixed;
+        top:50%;
+        left:50%;
+        width:110mm;
+        height:110mm;
+        margin-left:-55mm;
+        margin-top:-55mm;
+        opacity:{$wm_opacity_esc};
+        z-index:0;
+        pointer-events:none;
+    }
+    .wm img{width:100%; height:auto;}
+
+    .topline{border-bottom:2px solid #e5e7eb; padding-bottom:10px; margin-bottom:14px;}
+    .headertable{width:100%; border-collapse:collapse;}
+    .headertable td{border:none; padding:0; vertical-align:top;}
+    /* Logo: explicit width works reliably in both browser print and mPDF */
+    .logo img{width:190px; height:auto; display:block;}
+    .company{margin-top:6px;}
+    .company h1{margin:0; font-size:18px; color:{$primary_esc};}
+    .company .meta{margin-top:2px; color:#374151; line-height:1.4; font-size:12px;}
+
+    .doc-title{font-size:26px; font-weight:800; text-align:right; color:{$primary_esc}; margin:0;}
+    .orderbox{margin-top:10px; text-align:right; line-height:1.45;}
+    .ordertable{width:100%; border-collapse:collapse; margin-top:8px;}
+    .ordertable td{border:none; padding:3px 0; vertical-align:top;}
+    .ordertable .k{color:#374151; font-weight:700; padding-right:10px; white-space:nowrap;}
+    .ordertable .v{text-align:right;}
+    .badge{display:inline-block; padding:3px 8px; border-radius:999px; font-size:11px; color:#008000; background:{$status_color_esc};}
+
+    table{width:100%; border-collapse:collapse;}
+    th,td{border:1px solid #e5e7eb; padding:8px; vertical-align:middle;}
+    th{background:#f9fafb; font-weight:700;}
+    .imgcell{width:52px; text-align:center;}
+    .qtycell{width:60px; text-align:center;}
+    .pricecell,.totalcell{width:110px; text-align:right;}
+    .skucell{width:120px;}
+
+    .addrtable{width:100%; border-collapse:collapse; margin:14px 0;}
+    .addrtable td{border:none; padding:0; vertical-align:top;}
+    .addrfull{margin:14px 0;}
+    .addrfull .wcposm-addrbox{width:100%;}
+    .addrcol{width:50%;}
+    .addrpad-left{padding-left:10px;}
+    .addrpad-right{padding-right:10px;}
+
+    .wcposm-addrbox{page-break-inside:avoid; border:1px solid #e5e7eb; border-radius:10px; padding:10px;}
+    /* NOTE: Previously we used font-size:0 with a child span to hide injected icon glyphs.
+       mPDF can incorrectly apply the 0-size to children in some cases, causing labels to vanish.
+       We now rely on strict pseudo-element disabling + PUA stripping instead. */
+    .wcposm-addrbox .wcposm-boxtitle{margin:0 0 6px 0; font-size:13px; color:#111827; font-weight:800;}
+    .wcposm-addrbox .wcposm-boxtitle .t{font-size:inherit;}
+    /* Hard-disable any injected icons/pseudo content in address area (prevents □□□□ before Bill To/Phone). */
+    .wcposm-addrbox .wcposm-boxtitle:before, .wcposm-addrbox .wcposm-boxtitle:after,
+    .wcposm-addrbox .wcposm-boxtitle::before, .wcposm-addrbox .wcposm-boxtitle::after,
+    .wcposm-addrbox .wcposm-label:before, .wcposm-addrbox .wcposm-label:after,
+    .wcposm-addrbox .wcposm-label::before, .wcposm-addrbox .wcposm-label::after,
+    .wcposm-addrbox .wcposm-line:before, .wcposm-addrbox .wcposm-line:after,
+    .wcposm-addrbox .wcposm-line::before, .wcposm-addrbox .wcposm-line::after,
+    .wcposm-addrbox span:before, .wcposm-addrbox span:after,
+    .wcposm-addrbox span::before, .wcposm-addrbox span::after,
+    .wcposm-addrbox div:before, .wcposm-addrbox div:after,
+    .wcposm-addrbox div::before, .wcposm-addrbox div::after{content:none !important; display:none !important; visibility:hidden !important;}
+    .wcposm-addrbox i,.wcposm-addrbox svg,.wcposm-addrbox .dashicons,.wcposm-addrbox .fa{display:none !important;}
+
+    /* Use a table-like layout for label/value pairs.
+       This is the most reliable way to keep alignment identical in browser print + mPDF
+       and guarantees the Address label stays aligned with the FIRST line of multi-line values. */
+    .wcposm-addrbox .wcposm-line{color:#374151; line-height:1.4; display:table; width:100%; table-layout:fixed;}
+    /* Labels should always be visible in both browser print and mPDF. */
+    .wcposm-addrbox .wcposm-label{font-weight:700; color:#111827; font-size:12px; display:table-cell; vertical-align:top; width:80px; padding-right:8px;}
+    .wcposm-addrbox .wcposm-label .t{font-size:inherit;}
+    .wcposm-addrbox .wcposm-value{color:#111827; display:table-cell; vertical-align:top;}
+    /* Name row: keep label small, name value larger/bolder */
+    .wcposm-addrbox .wcposm-name{font-weight:normal; font-size:12px; color:#374151;}
+    .wcposm-addrbox .wcposm-nameval{font-weight:800; font-size:14px; color:#111827;}
+    /* Address value can contain <br> lines; keep it readable */
+    /* Multi-line address value (contains <br>). */
+    .wcposm-addrbox .wcposm-addrval{display:block; color:#111827;}
+    .wcposm-addrbox .muted{color:#6b7280; font-size:11px;}
+
+    /* Totals / summary (keep on the right side like standard invoices) */
+    .summarywrap{width:100%; border-collapse:collapse; margin-top:12px;}
+    .summarywrap td{border:none; padding:0; vertical-align:top;}
+    .sumspacer{width:55%;}
+    .sumcol{width:45%;}
+    .summary{width:100%; border-collapse:collapse;}
+    .summary td{border:1px solid #e5e7eb; padding:8px;}
+    .summary td:last-child{text-align:right;}
+    .summary .sumval{text-align:right; white-space:nowrap;}
+    .summary .grand td{font-weight:800; font-size:14px; border-top:2px solid #111827;}
+
+    /* WooCommerce price markup: keep currency symbol baseline-aligned and same font size */
+    .woocommerce-Price-amount, .woocommerce-Price-amount *{font-family:inherit; font-size:inherit;}
+    .woocommerce-Price-currencySymbol{font-size:1em; vertical-align:baseline; font-family: notosansbengali, dejavusans, sans-serif !important;}
+
+    .footer{margin-top:18px; border-top:1px solid #e5e7eb; padding-top:10px; color:#374151;}
+    .footertable{width:100%; border-collapse:collapse;}
+    .footertable td{border:none; padding:0; vertical-align:top;}
+    .footright{text-align:right;}
+    .sign{page-break-inside:avoid; padding-top:14px;}
+    .sigline{border-top:1px solid #111827; width:180px; margin-left:auto; margin-bottom:6px;}
+    .sigtext{color:#111827; font-size:12px;}

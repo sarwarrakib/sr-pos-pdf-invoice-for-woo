@@ -1,0 +1,6 @@
+/* Settings UI helpers */
+.wcposm-media-row{display:flex; gap:10px; align-items:center;}
+.wcposm-media-preview{max-height:70px; border:1px solid #dcdcde; border-radius:10px; padding:4px; background:#fff;}
+#wcposm-install-output{white-space:pre-wrap; background:#111827; color:#e5e7eb; padding:12px; border-radius:12px; max-width:920px;}
+#wcposm-install-output.ok{outline:2px solid #16a34a;}
+#wcposm-install-output.bad{outline:2px solid #dc2626;}
